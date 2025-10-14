@@ -1,0 +1,32 @@
+{% extends 'base.html' %} 
+{% load static %} 
+
+{% block title %}Delete SubTask - Hangarin{% endblock %}
+{% block page_title %}Delete SubTask{% endblock %}
+
+{% block content %}
+<div class="row">
+    <div class="col-md-12">
+        <div class="card">
+            <div class="card-header">
+                <div class="card-title">Delete SubTask</div>
+                <div class="card-category">Confirm deletion</div>
+            </div>
+            <div class="card-body">
+                <div class="row">
+                    <div class="col-md-8">
+                        <form method="post">
+                            {% csrf_token %}
+                            <p>Are you sure you want to delete "{{ object }}"?</p>
+                            <div class="form-group">
+                                <button type="submit" class="btn btn-danger btn-rounded">Yes, Delete</button>
+                                <a href="{% url 'subtask-list' %}" class="btn btn-secondary btn-rounded">Cancel</a>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

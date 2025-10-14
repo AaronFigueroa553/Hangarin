@@ -1,0 +1,35 @@
+{% extends 'base.html' %} 
+{% load static %} 
+
+{% block title %}{% if object %}Update Priority{% else %}Add New Priority{% endif %} - Hangarin{% endblock %}
+{% block page_title %}{% if object %}Update Priority{% else %}Add New Priority{% endif %}{% endblock %}
+
+{% block content %}
+<div class="row">
+    <div class="col-md-12">
+        <div class="card">
+            <div class="card-header">
+                <div class="card-title">{% if object %}Update Priority{% else %}Add New Priority{% endif %}</div>
+                <div class="card-category">{% if object %}Modify priority details{% else %}Create a new priority{% endif %}</div>
+            </div>
+            <div class="card-body">
+                <div class="row">
+                    <div class="col-md-8">
+                        <form method="post" novalidate>
+                            {% csrf_token %} 
+                            {% include 'includes/form.html' %}
+                            
+                            <div class="form-group">
+                                <button type="submit" class="btn btn-primary btn-rounded">
+                                    {% if object %}Update Priority{% else %}Create Priority{% endif %}
+                                </button>
+                                <a href="{% url 'priority-list' %}" class="btn btn-secondary btn-rounded">Cancel</a>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

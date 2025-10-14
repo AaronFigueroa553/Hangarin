@@ -1,0 +1,32 @@
+{% extends 'base.html' %} 
+{% load static %} 
+
+{% block title %}Delete Category - Hangarin{% endblock %}
+{% block page_title %}Delete Category{% endblock %}
+
+{% block content %}
+<div class="row">
+    <div class="col-md-12">
+        <div class="card">
+            <div class="card-header">
+                <div class="card-title">Delete Category</div>
+                <div class="card-category">Confirm deletion</div>
+            </div>
+            <div class="card-body">
+                <div class="row">
+                    <div class="col-md-8">
+                        <form method="post">
+                            {% csrf_token %}
+                            <p>Are you sure you want to delete "{{ object }}"?</p>
+                            <div class="form-group">
+                                <button type="submit" class="btn btn-danger btn-rounded">Yes, Delete</button>
+                                <a href="{% url 'category-list' %}" class="btn btn-secondary btn-rounded">Cancel</a>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
