@@ -7,7 +7,6 @@ from .models import Task, SubTask, Note, Category, Priority
 from .forms import TaskForm, SubTaskForm, NoteForm, CategoryForm, PriorityForm
 
 
-# 🏠 DASHBOARD VIEW (get_context_data)
 class HomePageView(TemplateView):
     template_name = "home.html"
 
@@ -15,16 +14,16 @@ class HomePageView(TemplateView):
         context = super().get_context_data(**kwargs)
         today = timezone.now().date()
 
-        # Dashboard statistics
+        
         context["pending_tasks"] = Task.objects.filter(status="Pending").count()
         context["completed_tasks"] = Task.objects.filter(status="Completed").count()
         context["high_priority_tasks"] = Task.objects.filter(priority__name__icontains="High").count()
         context["due_today_tasks"] = Task.objects.filter(deadline__date=today).count()
 
-        # Recently added tasks
+        
         context["recent_tasks"] = Task.objects.order_by("-created_at")[:5]
 
-        # Totals
+        
         context["total_categories"] = Category.objects.count()
         context["total_priorities"] = Priority.objects.count()
         context["total_notes"] = Note.objects.count()
@@ -32,7 +31,6 @@ class HomePageView(TemplateView):
         return context
 
 
-# 🧾 TASK VIEWS (get_queryset + get_ordering)
 class TaskList(ListView):
     model = Task
     context_object_name = 'tasks'
@@ -80,7 +78,6 @@ class TaskDeleteView(DeleteView):
     success_url = reverse_lazy('task-list')
 
 
-# 🧩 SUBTASK VIEWS (search + sort)
 class SubTaskList(ListView):
     model = SubTask
     context_object_name = 'subtasks'
@@ -125,7 +122,6 @@ class SubTaskDeleteView(DeleteView):
     success_url = reverse_lazy('subtask-list')
 
 
-# 🗒 NOTE VIEWS (search + sort)
 class NoteList(ListView):
     model = Note
     context_object_name = 'notes'
@@ -170,7 +166,6 @@ class NoteDeleteView(DeleteView):
     success_url = reverse_lazy('note-list')
 
 
-# 🗂 CATEGORY VIEWS (search + sort)
 class CategoryList(ListView):
     model = Category
     context_object_name = 'categories'
@@ -208,7 +203,6 @@ class CategoryDeleteView(DeleteView):
     success_url = reverse_lazy('category-list')
 
 
-# 🚩 PRIORITY VIEWS (search + sort)
 class PriorityList(ListView):
     model = Priority
     context_object_name = 'priorities'

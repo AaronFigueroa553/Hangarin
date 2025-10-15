@@ -27,7 +27,7 @@ from todoorg.views import (
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path("accounts/", include("allauth.urls")), # allauth routes
+    path("accounts/", include("allauth.urls")), 
     path('', HomePageView.as_view(), name='home'),
 
     
