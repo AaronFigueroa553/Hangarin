@@ -29,7 +29,7 @@ class SubTaskAdmin(admin.ModelAdmin):
     def get_member_program(self, obj):
         try:
             member = SubTask.objects.get(id=obj.parent_task_id)
-            return member.title  #need fixing
+            return member.title  
         except title.DoesNotExist:
             return None
 

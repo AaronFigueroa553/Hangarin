@@ -15,7 +15,7 @@ class Command(BaseCommand):
         fake = Faker()
 
         for _ in range(count):
-            words = [fake.word() for _ in range(2)]  # two words
+            words = [fake.word() for _ in range(2)]  
             task_name = ' '.join(words)
             Task.objects.create(    
                 title=fake.sentence(nb_words=5),
@@ -35,7 +35,7 @@ class Command(BaseCommand):
         fake = Faker()
 
         for _ in range(count):
-            words = [fake.word() for _ in range(2)]  # two words
+            words = [fake.word() for _ in range(2)]  
             note_name = ' '.join(words)
             Note.objects.create(    
                 task=Task.objects.order_by('?').first(),
@@ -49,7 +49,7 @@ class Command(BaseCommand):
         fake = Faker()
 
         for _ in range(count):
-            words = [fake.word() for _ in range(2)]  # two words
+            words = [fake.word() for _ in range(2)]  
             subtask_name = ' '.join(words)
             SubTask.objects.create(    
                 parent_task=Task.objects.order_by('?').first(),
