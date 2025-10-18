@@ -16,6 +16,7 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path, include
+from django.urls import path, include
 from todoorg.views import (
     HomePageView, 
     TaskList, TaskCreateView, TaskUpdateView, TaskDeleteView,
@@ -26,7 +27,8 @@ from todoorg.views import (
 )
 
 urlpatterns = [
-    path('admin/', admin.site.urls),
+    path('admin/', admin.site.urls),    
+    path('', include('pwa.urls')),
     path("accounts/", include("allauth.urls")), 
     path('', HomePageView.as_view(), name='home'),
 
